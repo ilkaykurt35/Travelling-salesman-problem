@@ -56,3 +56,17 @@ while i < len(Point.listOfInstances)-1:
 
 x.append(startPoint.x)
 y.append(startPoint.y)
+
+fig, ax = plt.subplots()
+ax.triplot(x, y, marker="o", color="grey", linewidth=0.5, label = "Ways")
+ax.plot(x, y, color="red", linewidth=2, linestyle='--', label = "Route")
+ax.legend(loc='upper left')
+
+for i, txt in enumerate(n):
+    ax.annotate(txt, (x[i], y[i]))
+    ax.annotate("    " +" ("+str(i+1)+")", (x[i], y[i]), color="Red")
+    xmean = (x[i] + x[i+1]) / 2
+    ymean = (y[i] + y[i+1]) / 2
+    ax.annotate(str(round(math.sqrt((abs(x[i]-x[i+1]))**2+(abs(y[i]-y[i+1]))**2), 2)) , xy=(xmean,ymean), xycoords='data', color="Grey")
+
+plt.show()
